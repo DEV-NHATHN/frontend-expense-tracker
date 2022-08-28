@@ -1,10 +1,28 @@
-import * as React from "react";
-import { Chart, ArcElement } from "chart.js";
+import { ArcElement, Chart } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import Label, { LabelProps } from "./Label";
 
 Chart.register(ArcElement);
 
 export interface GraphProps {}
+
+const obj: LabelProps[] = [
+  {
+    type: "Savings",
+    color: "#36A2EB",
+    percent: 45,
+  },
+  {
+    type: "Investment",
+    color: "#FF6384",
+    percent: 20,
+  },
+  {
+    type: "Expense",
+    color: "#FFCD56",
+    percent: 10,
+  },
+];
 
 const config = {
   data: {
@@ -38,7 +56,10 @@ export default function Graph(props: GraphProps) {
             <span className="block text-3xl text-emerald-400">{0} VND</span>
           </h3>
         </div>
-        <div className="flex flex-col py-10 gap-4">{/* labels */}</div>
+        <div className="flex flex-col py-10 gap-4">
+          {/* labels */}
+          <Label obj={obj}></Label>
+        </div>
       </div>
     </div>
   );

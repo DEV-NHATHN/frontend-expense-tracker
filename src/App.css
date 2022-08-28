@@ -10,6 +10,19 @@
   padding: 0;
 }
 
+:root {
+  --color-primary: #f9c74f;
+  --color-secondary: #9d4edd;
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
 .App {
   text-align: center;
   padding: 4em 0;
