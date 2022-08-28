@@ -1,4 +1,4 @@
-import React from "react";
+import Form from "../components/Form";
 import Graph from "../components/Graph";
 
 type Props = {};
@@ -14,6 +14,7 @@ const ExpenseTracker = (props: Props) => {
           {/* Chart */}
           <Graph />
           {/* Form */}
+          <Form />
         </div>
       </div>
     </>

@@ -1,13 +1,13 @@
-export type LabelProps = {
-  type: string;
-  color: string;
-  percent: number;
+import { ChartItem } from "@src/models";
+
+type LabelProps = {
+  obj: ChartItem[];
 };
 
-const Label = ({ obj }: any) => {
+const Label = ({ obj }: LabelProps) => {
   return (
     <>
-      {obj.map((item: LabelProps, index: number) => {
+      {obj.map((item: ChartItem, index: number) => {
         return <LabelComponent data={item} key={index} />;
       })}
     </>

@@ -1,12 +1,13 @@
+import { ChartItem } from "@src/models";
 import { ArcElement, Chart } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import Label, { LabelProps } from "./Label";
+import Label from "./Label";
 
 Chart.register(ArcElement);
 
 export interface GraphProps {}
 
-const obj: LabelProps[] = [
+const obj: ChartItem[] = [
   {
     type: "Savings",
     color: "#36A2EB",
