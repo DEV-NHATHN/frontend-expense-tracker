@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import List from "./List";
 
 type FormProps = {};
 
@@ -55,6 +56,8 @@ const Form = (props: FormProps) => {
           </div>
         </div>
       </form>
+
+      <List />
     </div>
   );
 };

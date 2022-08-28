@@ -1,3 +1,5 @@
+import "boxicons";
+import "boxicons/css/boxicons.min.css";
 import "./App.css";
 import ExpenseTracker from "./pages/ExpenseTracker";
 
