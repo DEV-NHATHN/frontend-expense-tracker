@@ -1,4 +1,5 @@
 import { TransactionItem } from "@src/models";
+import { default as API } from "../redux/apiSlice";
 
 type Props = {};
 
@@ -18,12 +19,28 @@ const obj: TransactionItem[] = [
 ];
 
 const List = (props: Props) => {
+  const { data, isFetching, isSuccess, isError } = API.useGetLabelsQuery();
+
+  let Transactions;
+
+  if (isFetching) {
+    Transactions = <div>Fetching</div>;
+  }
+
+  if (isError) {
+    Transactions = <div>Error</div>;
+  }
+
+  if (isSuccess) {
+    Transactions = data?.map((item: TransactionItem, index: number) => {
+      return <Transaction category={item} key={index} />;
+    });
+  }
+
   return (
     <div className="flex flex-col py-6 gap-3">
       <h1 className="py-4 font-bold text-xl">History</h1>
-      {obj.map((item, index) => (
-        <Transaction category={item} key={index} />
-      ))}
+      {Transactions}
     </div>
   );
 };

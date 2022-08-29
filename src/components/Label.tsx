@@ -1,17 +1,26 @@
 import { ChartItem } from "@src/models";
+import { default as API } from "../redux/apiSlice";
 
-type LabelProps = {
-  obj: ChartItem[];
-};
+const Label = () => {
+  const { data, isFetching, isSuccess, isError } = API.useGetLabelsQuery();
 
-const Label = ({ obj }: LabelProps) => {
-  return (
-    <>
-      {obj.map((item: ChartItem, index: number) => {
-        return <LabelComponent data={item} key={index} />;
-      })}
-    </>
-  );
+  let Label;
+
+  if (isFetching) {
+    Label = <div>Fetching</div>;
+  }
+
+  if (isError) {
+    Label = <div>Error</div>;
+  }
+
+  if (isSuccess) {
+    Label = data?.map((item: ChartItem, index: number) => {
+      return <LabelComponent data={item} key={index} />;
+    });
+  }
+
+  return <>{Label}</>;
 };
 
 function LabelComponent({ data }: any) {

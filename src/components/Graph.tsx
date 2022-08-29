@@ -59,7 +59,7 @@ export default function Graph(props: GraphProps) {
         </div>
         <div className="flex flex-col py-10 gap-4">
           {/* labels */}
-          <Label obj={obj}></Label>
+          <Label></Label>
         </div>
       </div>
     </div>
