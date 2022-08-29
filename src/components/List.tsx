@@ -19,7 +19,7 @@ const obj: TransactionItem[] = [
 ];
 
 const List = (props: Props) => {
-  const { data, isFetching, isSuccess, isError } = API.useGetLabelsQuery();
+  const { data, isFetching, isSuccess, isError } = API.useGetLabelsQuery("");
   const [deleteTransaction] = API.useDeleteTransactionMutation();
   let Transactions;
 

@@ -1,8 +1,9 @@
 import { ChartItem } from "@src/models";
 import { default as API } from "../redux/apiSlice";
+import { getLabels } from "../utils";
 
 const Label = () => {
-  const { data, isFetching, isSuccess, isError } = API.useGetLabelsQuery();
+  const { data, isFetching, isSuccess, isError } = API.useGetLabelsQuery("");
 
   let Label;
 
@@ -15,7 +16,7 @@ const Label = () => {
   }
 
   if (isSuccess) {
-    Label = data?.map((item: ChartItem, index: number) => {
+    Label = getLabels(data).map((item: ChartItem, index: number) => {
       return <LabelComponent data={item} key={index} />;
     });
   }
@@ -23,7 +24,7 @@ const Label = () => {
   return <>{Label}</>;
 };
 
-function LabelComponent({ data }: any) {
+export function LabelComponent({ data }: any) {
   if (!data) return null;
   return (
     <div className="labels flex justify-between">
@@ -34,7 +35,7 @@ function LabelComponent({ data }: any) {
         ></div>
         <h3 className="text-md">{data.type ?? ""}</h3>
       </div>
-      <h3 className="font-bold">{data.percent ?? 0}%</h3>
+      <h3 className="font-bold">{Math.round(data.percent) ?? 0}%</h3>
     </div>
   );
 }

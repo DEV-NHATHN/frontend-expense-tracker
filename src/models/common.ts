@@ -6,8 +6,9 @@ export type ChartItem = {
 
 export type TransactionItem = {
   _id?: string;
-  name?: any;
+  name?: string;
   color?: string;
+  type?: string;
 };
 
 export interface PaginationParams {
