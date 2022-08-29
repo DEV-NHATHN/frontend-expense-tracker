@@ -19,6 +19,7 @@
     "paths": {
       "@src/*": ["./src/*"],
       "@api/*": ["./src/api/*"],
+      "@app/*": ["./src/app/*"],
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
       "@configs/*": ["./src/configs/*"],
@@ -27,7 +28,9 @@
       "@models/*": ["src/models/*"],
       "@pages/*": ["./src/pages/*"],
       "@queries/*": ["./src/queries/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@redux/*": ["./src/redux/*"]
+
     }
   },
   "include": ["src", "src/**/*"],
