@@ -20,8 +20,21 @@ const obj: TransactionItem[] = [
 
 const List = (props: Props) => {
   const { data, isFetching, isSuccess, isError } = API.useGetLabelsQuery();
-
+  const [deleteTransaction] = API.useDeleteTransactionMutation();
   let Transactions;
+
+  const handleClick = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    const target = e.target as HTMLButtonElement;
+
+    if (!target.dataset.id) return 0;
+    else {
+      /// event handler logic
+      console.log(target.dataset.id);
+      await deleteTransaction({ _id: target.dataset.id });
+    }
+  };
 
   if (isFetching) {
     Transactions = <div>Fetching</div>;
@@ -33,7 +46,7 @@ const List = (props: Props) => {
 
   if (isSuccess) {
     Transactions = data?.map((item: TransactionItem, index: number) => {
-      return <Transaction category={item} key={index} />;
+      return <Transaction category={item} key={index} handler={handleClick} />;
     });
   }
 
@@ -47,9 +60,10 @@ const List = (props: Props) => {
 
 type TransactionProps = {
   category: TransactionItem;
+  handler?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-function Transaction({ category }: TransactionProps) {
+function Transaction({ category, handler }: TransactionProps) {
   if (!category) return null;
   return (
     <div
@@ -59,10 +73,11 @@ function Transaction({ category }: TransactionProps) {
       8px solid ${category.color ?? "#e5e5e5"}`,
       }}
     >
-      <button className="px-3">
+      <button className="px-3" onClick={handler}>
         <i
           className="bx bx-trash"
           style={{ color: category.color ?? "#e5e5e5" }}
+          data-id={category._id ?? ""}
         ></i>
       </button>
       <span className="block w-full">{category.name ?? ""}</span>

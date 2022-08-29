@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Category } from "@src/models/expense";
 import { baseUrl } from "../configs";
 
 export const apiSlice = createApi({
@@ -7,11 +8,13 @@ export const apiSlice = createApi({
     // get categories
     getCategories: builder.query({
       query: () => "/categories",
+      providesTags: ["categories"] as any,
     }),
 
     // get labels
     getLabels: builder.query({
       query: () => "/labels",
+      providesTags: ["transaction"] as any,
     }),
 
     // add new transaction
@@ -21,6 +24,7 @@ export const apiSlice = createApi({
         method: "POST",
         body: initialTransaction,
       }),
+      invalidatesTags: ["transaction"] as any,
     }),
 
     // delete transaction
@@ -30,6 +34,7 @@ export const apiSlice = createApi({
         method: "DELETE",
         body: recordId,
       }),
+      invalidatesTags: ["transaction"] as any,
     }),
   }),
 });

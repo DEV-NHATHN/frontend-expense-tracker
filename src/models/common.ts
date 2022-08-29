@@ -5,6 +5,7 @@ export type ChartItem = {
 };
 
 export type TransactionItem = {
+  _id?: string;
   name?: any;
   color?: string;
 };
@@ -29,3 +30,7 @@ export interface ListParams {
   // Other keys
   [key: string]: any;
 }
+
+export type HTMLElementEvent<T extends HTMLElement> = Event & {
+  target: T;
+};
